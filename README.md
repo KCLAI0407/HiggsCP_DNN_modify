@@ -1,2 +1,2 @@
-# HiggsCP_DNN_modify
-Pytorch scripts is modified from Tong's version
+# HiggsCP_DNN_modified
+Forked and modified from HiggsCP package
