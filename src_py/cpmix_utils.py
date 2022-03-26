@@ -173,7 +173,7 @@ def preprocess_data(args):
         Z_hits_c2s[:,num_classes//2] = 1
         Z_hits_argmaxs = np.zeros((Z_len, num_classes))
         
-        if args.LABEL:
+        if args.LABEL_BKGD:
             Z_weights = np.hstack([Z_weights,np.ones((Z_len,1))])
         else:
             Z_weights = np.hstack([Z_weights,np.zeros((Z_len,1))])
