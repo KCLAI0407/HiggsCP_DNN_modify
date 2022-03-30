@@ -122,12 +122,11 @@ def preprocess_data(args):
             or np.load(os.path.join(data_path, str(num_classes)+'weights.npy')).shape[1] != num_classes \
             or np.load(os.path.join(data_path, str(num_classes)+'hits_argmaxs.npy')).shape[1] != num_classes:
 
-        classes = np.linspace(0, 2, num_classes)
+        classes = np.linspace(0, 2, num_classes)*np.pi
         weights, argmaxs,  hits_argmaxs = calc_weights_and_argmaxs(classes, c012s, data_len, num_classes)
         
         #add a column
         weights=np.hstack([weights,np.zeros((data_len,1))])
-        argmaxs=np.hstack([argmaxs,np.zeros((data_len,1))])
         hits_argmaxs=np.hstack([hits_argmaxs,np.zeros((data_len,1))])
         
         np.save(os.path.join(data_path, str(num_classes+1)+'weights.npy'), weights)
@@ -179,11 +178,10 @@ def preprocess_data(args):
         else:
             Z_weights = np.hstack([Z_weights,np.zeros((Z_len,1))])
         
-        Z_hits_c0s = np.hstack([Z_hits_c0s,np.ones((Z_len,1))])
-        Z_hits_c1s = np.hstack([Z_hits_c1s,np.ones((Z_len,1))])
-        Z_hits_c2s = np.hstack([Z_hits_c2s,np.ones((Z_len,1))])
+        Z_hits_c0s = np.hstack([Z_hits_c0s,np.zeros((Z_len,1))])
+        Z_hits_c1s = np.hstack([Z_hits_c1s,np.zeros((Z_len,1))])
+        Z_hits_c2s = np.hstack([Z_hits_c2s,np.zeros((Z_len,1))])
         
-        Z_argmaxs=np.hstack([Z_argmaxs,np.ones((Z_len,1))])
         Z_hits_argmaxs=np.hstack([Z_hits_argmaxs,np.ones((Z_len,1))])
         
         data = np.vstack([data,Z_data])
